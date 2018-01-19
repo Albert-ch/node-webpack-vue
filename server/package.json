@@ -20,6 +20,6 @@
     "mysql": "^2.15.0"
   },
   "dependencies": {
-    "mysql2": "^1.5.1"
+    "promise-mysql": "^3.2.0"
   }
 }
