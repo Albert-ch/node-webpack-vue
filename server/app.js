@@ -1,11 +1,14 @@
 const path = require('path')
-const fs = require('fs')
+// const fs = require('fs')
+const url = require('url')
 const Koa = require('koa')
 const bodyParser = require('koa-bodyparser')
 const static = require('koa-static')
 const views = require('koa-views')
 const Router = require('koa-router')
-const axios = require('axios')
+// const axios = require('axios')
+
+const CommonController = require('./middleware/CommonController')
 
 const app = new Koa()
 const router = new Router()
@@ -21,7 +24,7 @@ app.use(views(path.join(__dirname, './view'), {
 //解析请求体数据
 app.use(bodyParser())
 
-// router.all(/^\/api\/*/, commonController)
+router.all(/^\/api\/*/, CommonController)
 
 router.all(/.*/, async ctx => {
     //处理网络安全
