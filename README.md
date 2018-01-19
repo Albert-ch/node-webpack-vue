@@ -16,4 +16,4 @@ npm i
 
 npm run dev
 
-localhost:8080
+http://localhost:8080
