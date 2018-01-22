@@ -3,6 +3,7 @@ const path = require('path')
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 // const CopyWebpackPlugin = require('copy-webpack-plugin')
+const ExtractTextPlugin=require('extract-text-webpack-plugin')
 
 module.exports ={
     entry: {
@@ -18,7 +19,15 @@ module.exports ={
         rules: [
             {
                 test: /\.vue/,
-                use: ['vue-loader']
+                use: ['vue-loader'],
+                // options: {           webpack3.X 目测无效 适用于2.X
+                //     loaders: {
+                //         css: ExtractTextPlugin.extract({
+                //             use: 'css-loader',
+                //             fallback: 'vue-style-loader' // <- 这是vue-loader的依赖，所以如果使用npm3，则不需要显式安装
+                //         })
+                //     }
+                // }
             },
             {
                 test: /\.js/,
@@ -28,6 +37,10 @@ module.exports ={
             {
                 test: /\.css/,
                 use: ['style-loader', 'css-loader', 'postcss-loader']
+                // use: ExtractTextPlugin.extract({      // 提取引入的css模块
+                //     fallback: "style-loader",
+                //     use: "css-loader"
+                // })
             },
             {
                 test: /\.(png|jpg|jpeg|gif|eot|ttf|woff|woff2|svg|svgz)(\?.+)?$/,
@@ -63,6 +76,7 @@ module.exports ={
             template: './index.html',
             filename: path.resolve(__dirname, "../server/view/index.html")
         }),
+        // new ExtractTextPlugin('style.css')
     ],
     resolve: {
         alias: {

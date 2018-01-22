@@ -6,6 +6,8 @@
 <script>
     import userService from "../../service/index/index"
 
+    import '../../static/common.css'
+
 export default {
     data(){
         return {
@@ -21,3 +23,9 @@ export default {
 }
 
 </script>
+
+<style>
+    .content{
+        display: flex;
+    }
+</style>
